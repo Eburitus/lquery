@@ -1,0 +1,92 @@
+<?php
+////////////////////   INSTALLATION SCRIPT 		/////////////////
+
+function lquery_schema()
+{
+	
+	$schema['lquery_index'] = array(
+		'description' => 'Index of all queries',
+		'fields' => array(
+			'id' => array(
+				'description' => 'The primary identifier for node.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				),
+			'query_n' => array(
+				'description' => 'Name of the query',
+				'type' => 'varchar',
+				'length' => 64,
+				'not null' => TRUE,
+				'default' => '',
+				),
+			'query_form' => array(
+				'description' => 'Full query',
+				'type' => 'varchar',
+				'length' => 255,
+				),
+			'multi_select' => array(
+				'description' => 'Is query single or multiselect',
+				'type' => 'int',
+				'size' => 'tiny',
+				'default' => 0,
+				),
+			'active' => array(
+				'description' => 'Is query active or inactive',
+				'type' => 'int',
+				'size' => 'tiny',
+				'default' => 0,
+				),
+			),
+		'indexes' => array(
+			'big_query_list' => array('id', 'query_n', 'query_form', 'active'),
+			'small_list' => array('query_n'),
+			),
+		'primary key' => array('id'),
+		);
+	return $schema;
+	
+}
+
+/////////////////////////   CREATION OF EXAMPLE QUERY AFTER SCHEMA IMPLEMENTS INDEX ///////////////////
+
+function lquery_install()
+{
+	
+	$role = new stdClass();
+	$role->name = 'lq_content_creator';
+	user_role_save( $role );
+	
+}
+
+
+//////////////////////////////// DROPPING QUERY TABLES BEFORE SCHEMA DROPS INDEX ///////////////////
+function lquery_uninstall()
+{
+	if(db_table_exists('lquery_index'))
+	{
+		$queries = db_query('SELECT query_n FROM lquery_index')->fetchAll();
+		$nameL = '';
+		$nameS = '';
+		
+		foreach($queries as $name)
+		{
+		
+			$nameL = 'lq_l_'.$name->query_n;
+			$nameS = 'lq_s_'.$name->query_n;
+			
+			db_drop_table($nameL);
+			db_drop_table($nameS);
+		}
+	}
+	db_drop_table('lquery_index');
+	
+	
+	user_role_delete( 'lq_content_creator' );
+	
+	session_unset();
+	
+}
+
+
+?>

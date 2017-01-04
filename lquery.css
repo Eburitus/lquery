@@ -1,0 +1,51 @@
+.form-red-button {
+	color: white;
+	background-color: #992222;
+	border-radius: 12px;
+	border: 1px solid black;
+}
+
+.form-red-button:hover {
+	background-color: #CC4444;
+}
+
+
+
+
+.form-blue-button {
+	color: white;
+	background-color: #222299;
+	border-radius: 12px;
+	border: 1px solid black;
+}
+
+.form-blue-button:hover {
+	background-color: #4444CC;
+}
+
+.form-green-button {
+	color: white;
+	background-color: #229922;
+	border-radius: 12px;
+	border: 1px solid black;
+}
+
+.form-green-button:hover {
+	background-color: #44CC44;
+}
+
+.green {
+	color: rgb(0,255,0);
+	text-shadow: 2px 2px 2px rgba(100, 100, 100, 1);
+}
+
+.red {
+	color: rgb(255,0,0);
+	text-shadow: 2px 2px 2px rgba(100, 100, 100, 1);
+}
+
+.inset {
+	border: 2px;
+	outline-color:rgb(255,0,0);
+	border-style: inset;
+}

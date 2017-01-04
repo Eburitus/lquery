@@ -1,0 +1,17 @@
+name = lquery
+description = creates and manipulates queries
+package = Core
+version = VERSION
+core = 7.x
+configure = admin/structure/lquery
+
+
+; Information added by Drupal.org packaging script on 2015-08-19
+version = "7.44"
+project = "drupal"
+datestamp = "1440020197"
+
+
+
+
+stylesheets[all][] = lquery.css
