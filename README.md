@@ -1,7 +1,7 @@
 # lquery
 Librequery module to Drupal to create queries for the sites.
 
-LibreQuery is meant as free as possible. Theres no license selected but me as a starter of project, am not interested about licensing. I just hope that it's for use.
+LibreQuery comes with MIT license to allow modifications and distribution as well as possible. If you know any better license, please contact me.
 
 Requeirements:
 -Drupal 7.44
